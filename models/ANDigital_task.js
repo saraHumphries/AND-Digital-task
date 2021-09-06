@@ -31,27 +31,21 @@ const Solution = function() {
     };
 
     Solution.prototype.dealWith3Digits = function(threeDigitArray) {
-        const solutions = [];
+        let solutions = [];
         for (const digit of threeDigitArray) {
             const other_digits = this.removeDigitFromArray(threeDigitArray, digit);
             const twoDigitsSolution = this.dealWith2Digits(other_digits);
-            for (result of twoDigitsSolution) {
-                const solution = digit.concat(result);
-                solutions.push(solution);
-            };
+            solutions = solutions.concat(this.pushSolutions(twoDigitsSolution, digit));
         };
         return solutions;
     };
 
     Solution.prototype.dealWith4Digits = function(fourDigitArray) {
-        const solutions = [];
+        let solutions = [];
         for (const digit of fourDigitArray) {
             const other_digits = this.removeDigitFromArray(fourDigitArray, digit);
-            const threeDigitSolution = this.dealWith3Digits(other_digits);
-            for (result of threeDigitSolution) {
-                const solution = digit.concat(result);
-                solutions.push(solution);
-            };
+            const threeDigitsSolution = this.dealWith3Digits(other_digits);
+            solutions = solutions.concat(this.pushSolutions(threeDigitsSolution, digit));
         };
         return solutions;
     };
@@ -73,6 +67,15 @@ const Solution = function() {
         const other_digits = [...array];
         other_digits.splice(indexOfDigit, 1);
         return other_digits;
+    };
+
+    Solution.prototype.pushSolutions = function(suffixSolutions, digit) {
+        const solutions = [];
+        for (result of suffixSolutions) {
+            const solution = digit.concat(result);
+            solutions.push(solution);
+        };
+        return solutions;
     };
 };
 
