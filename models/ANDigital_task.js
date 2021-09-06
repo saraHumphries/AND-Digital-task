@@ -30,20 +30,20 @@ const Solution = function() {
         return solutions;
     };
 
-    Solution.prototype.dealWith3Digits = function(threeDigitArray) {
+    Solution.prototype.dealWith3Digits = function(array) {
         let solutions = [];
-        for (const digit of threeDigitArray) {
-            const other_digits = this.removeDigitFromArray(threeDigitArray, digit);
+        for (const digit of array) {
+            const other_digits = this.removeDigitFromArray(array, digit);
             const twoDigitsSolution = this.dealWith2Digits(other_digits);
             solutions = solutions.concat(this.pushSolutions(twoDigitsSolution, digit));
         };
         return solutions;
     };
 
-    Solution.prototype.dealWith4Digits = function(fourDigitArray) {
+    Solution.prototype.dealWith4Digits = function(array) {
         let solutions = [];
-        for (const digit of fourDigitArray) {
-            const other_digits = this.removeDigitFromArray(fourDigitArray, digit);
+        for (const digit of array) {
+            const other_digits = this.removeDigitFromArray(array, digit);
             const threeDigitsSolution = this.dealWith3Digits(other_digits);
             solutions = solutions.concat(this.pushSolutions(threeDigitsSolution, digit));
         };
