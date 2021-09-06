@@ -28,17 +28,17 @@ describe('Solution', function() {
         assert.deepStrictEqual(actual, expected);
     });
 
-    // it("should output '632, 623, 362, 326, 263, 236' for 'A 3B2 C6D'", function() {
-    //     const actual = solution.execute('A 3B2 C6D');
-    //     const expected = ['632', '623', '362', '326', '263', '236'];
-    //     assert.deepStrictEqual(actual, expected);
-    // });
+    it("should output '632, 623, 362, 326, 263, 236' for 'A 3B2 C6D'", function() {
+        const actual = solution.execute('A 3B2 C6D');
+        const expected = ['632', '623', '362', '326', '263', '236'];
+        assert.deepStrictEqual(actual, expected);
+    });
 
-    // it("should deal with 4 digits", function() {
-    //     const actual = solution.execute('1234');
-    //     const expected = ['4321', '4312', '4231', '4213', '4132', '4123', '3421', '3412', '3241', '3214', '3142', '3124', '2431', '2413', '2341', '2314', '2143', '2134', '1432', '1423', '1342', '1324', '1243', '1234'];
-    //     assert.deepStrictEqual(actual, expected);
-    // });
+    it("should deal with 4 digits", function() {
+        const actual = solution.execute('1234');
+        const expected = ['4321', '4312', '4231', '4213', '4132', '4123', '3421', '3412', '3241', '3214', '3142', '3124', '2431', '2413', '2341', '2314', '2143', '2134', '1432', '1423', '1342', '1324', '1243', '1234'];
+        assert.deepStrictEqual(actual, expected);
+    });
 
 
 })

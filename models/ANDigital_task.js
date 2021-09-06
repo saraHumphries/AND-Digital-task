@@ -4,7 +4,7 @@ const Solution = function() {
     
 
     Solution.prototype.execute = function(input) {
-        
+
         const ordered_digits = this.sortInput(input);
         if (ordered_digits.length == 2) {
             return this.dealWith2Digits(ordered_digits);
@@ -12,19 +12,10 @@ const Solution = function() {
         else {
             return this.dealWithDigits(ordered_digits);
         };
-
     };
 
-    Solution.prototype.dealWith2Digits = function(twoDigitArray) {
-        solutions = [];
-        const largest_digit = twoDigitArray[0];
-        const smallest_digit = twoDigitArray[1];
-
-        const solution1 = largest_digit + smallest_digit;
-        solutions.push(solution1);
-        const solution2 = smallest_digit + largest_digit;
-        solutions.push(solution2);
-        return solutions;
+    Solution.prototype.dealWith2Digits = function(array) {
+        return [array[0] + array[1], array[1] + array[0]];
     };
 
     Solution.prototype.dealWithDigits = function(array) {
@@ -41,17 +32,8 @@ const Solution = function() {
             solutions = solutions.concat(this.pushSolutions(previousSolution, digit));
         };
         return solutions;
+        
     };
-
-    // Solution.prototype.dealWith4Digits = function(array) {
-    //     let solutions = [];
-    //     for (const digit of array) {
-    //         const other_digits = this.removeDigitFromArray(array, digit);
-    //         const threeDigitsSolution = this.dealWith3Digits(other_digits);
-    //         solutions = solutions.concat(this.pushSolutions(threeDigitsSolution, digit));
-    //     };
-    //     return solutions;
-    // };
 
     Solution.prototype.sortInput = function(input) {
         const digit_array = [];
