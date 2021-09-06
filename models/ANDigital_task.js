@@ -11,7 +11,11 @@ const Solution = function() {
         }
         else if (ordered_digits.length == 3) {
             return this.dealWith3Digits(ordered_digits);
+        }
+        else if (ordered_digits.length == 4) {
+            return this.dealWith4Digits(ordered_digits);
         };
+
     };
 
     Solution.prototype.dealWith2Digits = function(twoDigitArray) {
@@ -29,11 +33,22 @@ const Solution = function() {
     Solution.prototype.dealWith3Digits = function(threeDigitArray) {
         const solutions = [];
         for (const digit of threeDigitArray) {
-            const indexOfDigit = threeDigitArray.indexOf(digit);
-            const other_digits = [...threeDigitArray]
-            other_digits.splice(indexOfDigit, 1);
+            const other_digits = this.removeDigitFromArray(threeDigitArray, digit);
             const twoDigitsSolution = this.dealWith2Digits(other_digits);
             for (result of twoDigitsSolution) {
+                const solution = digit.concat(result);
+                solutions.push(solution);
+            };
+        };
+        return solutions;
+    };
+
+    Solution.prototype.dealWith4Digits = function(fourDigitArray) {
+        const solutions = [];
+        for (const digit of fourDigitArray) {
+            const other_digits = this.removeDigitFromArray(fourDigitArray, digit);
+            const threeDigitSolution = this.dealWith3Digits(other_digits);
+            for (result of threeDigitSolution) {
                 const solution = digit.concat(result);
                 solutions.push(solution);
             };
@@ -51,6 +66,13 @@ const Solution = function() {
         };
         digit_array.sort().reverse();
         return digit_array;
+    };
+
+    Solution.prototype.removeDigitFromArray = function(array, digit) {
+        const indexOfDigit = array.indexOf(digit);
+        const other_digits = [...array];
+        other_digits.splice(indexOfDigit, 1);
+        return other_digits;
     };
 };
 
