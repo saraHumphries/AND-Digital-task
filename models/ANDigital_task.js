@@ -9,11 +9,8 @@ const Solution = function() {
         if (ordered_digits.length == 2) {
             return this.dealWith2Digits(ordered_digits);
         }
-        else if (ordered_digits.length == 3) {
-            return this.dealWith3Digits(ordered_digits);
-        }
-        else if (ordered_digits.length == 4) {
-            return this.dealWith4Digits(ordered_digits);
+        else {
+            return this.dealWithDigits(ordered_digits);
         };
 
     };
@@ -30,25 +27,31 @@ const Solution = function() {
         return solutions;
     };
 
-    Solution.prototype.dealWith3Digits = function(array) {
+    Solution.prototype.dealWithDigits = function(array) {
         let solutions = [];
+        let previousSolution;
         for (const digit of array) {
             const other_digits = this.removeDigitFromArray(array, digit);
-            const twoDigitsSolution = this.dealWith2Digits(other_digits);
-            solutions = solutions.concat(this.pushSolutions(twoDigitsSolution, digit));
+            if (other_digits.length == 2) {
+                previousSolution = this.dealWith2Digits(other_digits);
+            }
+            else {
+                previousSolution = this.dealWithDigits(other_digits);
+            }
+            solutions = solutions.concat(this.pushSolutions(previousSolution, digit));
         };
         return solutions;
     };
 
-    Solution.prototype.dealWith4Digits = function(array) {
-        let solutions = [];
-        for (const digit of array) {
-            const other_digits = this.removeDigitFromArray(array, digit);
-            const threeDigitsSolution = this.dealWith3Digits(other_digits);
-            solutions = solutions.concat(this.pushSolutions(threeDigitsSolution, digit));
-        };
-        return solutions;
-    };
+    // Solution.prototype.dealWith4Digits = function(array) {
+    //     let solutions = [];
+    //     for (const digit of array) {
+    //         const other_digits = this.removeDigitFromArray(array, digit);
+    //         const threeDigitsSolution = this.dealWith3Digits(other_digits);
+    //         solutions = solutions.concat(this.pushSolutions(threeDigitsSolution, digit));
+    //     };
+    //     return solutions;
+    // };
 
     Solution.prototype.sortInput = function(input) {
         const digit_array = [];
