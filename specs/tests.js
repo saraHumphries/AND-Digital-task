@@ -10,13 +10,13 @@ describe('Solution', function() {
 
     it("returns solutions for 2 digit number", function() {
         const actual = solution.execute('43');
-        const expected = '43, 34';
+        const expected = ['43', '34'];
         assert.deepStrictEqual(actual, expected);;
     }); 
 
     it("returns solutions for 2 digit number large number last", function() {
         const actual = solution.execute('34');
-        const expected = '43, 34';
+        const expected = ['43', '34'];
         assert.deepStrictEqual(actual, expected);;
     });
 
