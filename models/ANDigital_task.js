@@ -5,7 +5,7 @@ const Solution = function() {
 
     Solution.prototype.execute = function(input) {
 
-        const ordered_digits = this.sortInput(input);
+        const ordered_digits = this.cleanUpInput(input);
         if (ordered_digits.length == 2) {
             return this.dealWith2Digits(ordered_digits);
         }
@@ -28,14 +28,13 @@ const Solution = function() {
             }
             else {
                 previousSolution = this.dealWithDigits(other_digits);
-            }
+            };
             solutions = solutions.concat(this.pushSolutions(previousSolution, digit));
         };
         return solutions;
-        
     };
 
-    Solution.prototype.sortInput = function(input) {
+    Solution.prototype.cleanUpInput = function(input) {
         const digit_array = [];
         for (char of input) {
             int = parseInt(char);

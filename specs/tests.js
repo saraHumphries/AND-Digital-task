@@ -40,5 +40,22 @@ describe('Solution', function() {
         assert.deepStrictEqual(actual, expected);
     });
 
+    it("should deal with 5 digits", function() {
+        const actual = solution.execute('24519');
+        assert.deepStrictEqual(actual.length, 120);
+    });
 
-})
+    // it("should deal with repeat digits", function() {
+    //     const actual = solution.execute('33');
+    //     const expected = ['33'];
+    //     assert.deepStrictEqual(actual, expected);
+    // });
+
+    it("should deal with blank string", function() {
+        const actual = solution.execute('');
+        const expected = [];
+        assert.deepStrictEqual(actual, expected);
+    });
+
+
+});
