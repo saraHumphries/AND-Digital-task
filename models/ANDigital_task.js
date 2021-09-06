@@ -1,17 +1,16 @@
-const { PassThrough } = require("stream");
+
 
 const Solution = function() {
     
 
     Solution.prototype.execute = function(input) {
-
-        const ordered_digits = input.split("").sort().reverse();
-
-        if (input.length == 2) {
+        
+        const ordered_digits = this.sortInput(input);
+        if (ordered_digits.length == 2) {
             return this.dealWith2Digits(ordered_digits);
         }
-        else if (input.length == 3) {
-        return this.dealWith3Digits(ordered_digits);
+        else if (ordered_digits.length == 3) {
+            return this.dealWith3Digits(ordered_digits);
         };
     };
 
@@ -33,8 +32,8 @@ const Solution = function() {
             const indexOfDigit = threeDigitArray.indexOf(digit);
             const other_digits = [...threeDigitArray]
             other_digits.splice(indexOfDigit, 1);
-            const twoDigits = this.dealWith2Digits(other_digits);
-            for (result of twoDigits) {
+            const twoDigitsSolution = this.dealWith2Digits(other_digits);
+            for (result of twoDigitsSolution) {
                 const solution = digit.concat(result);
                 solutions.push(solution);
             };
@@ -42,6 +41,17 @@ const Solution = function() {
         return solutions;
     };
 
+    Solution.prototype.sortInput = function(input) {
+        const digit_array = [];
+        for (char of input) {
+            int = parseInt(char);
+            if (!isNaN(int)) {
+                digit_array.push(String(int));
+            };
+        };
+        digit_array.sort().reverse();
+        return digit_array;
+    };
 };
 
 

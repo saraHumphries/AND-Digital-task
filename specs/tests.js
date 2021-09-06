@@ -28,11 +28,11 @@ describe('Solution', function() {
         assert.deepStrictEqual(actual, expected);
     });
 
-    // it("should output '632, 623, 362, 326, 263, 236' for 'A 3B2 C6D'", function() {
-    //     const actual = solution.execute('A 3B2 C6D');
-    //     const expected = '632,623,362,326,263,236';
-    //     assert.deepStrictEqual(actual, expected);
-    // });
+    it("should output '632, 623, 362, 326, 263, 236' for 'A 3B2 C6D'", function() {
+        const actual = solution.execute('A 3B2 C6D');
+        const expected = ['632', '623', '362', '326', '263', '236'];
+        assert.deepStrictEqual(actual, expected);
+    });
 
 
 })
