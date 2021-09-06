@@ -5,11 +5,12 @@ const Solution = function() {
 
     Solution.prototype.execute = function(input) {
         let solutions = '';
-        const first_digit = input.split("")[0];
-        const second_digit = input.split("")[1];
-        const solution1 = second_digit + first_digit;
+        const ordered_digits = input.split("").sort();
+        const largest_digit = ordered_digits.slice(-1)[0];
+        const smallest_digit = ordered_digits[0];
+        const solution1 = largest_digit + smallest_digit;
         solutions += solution1 + ', ';
-        const solution2 = first_digit + second_digit;
+        const solution2 = smallest_digit + largest_digit;
         solutions += solution2;
         return solutions;
     };
