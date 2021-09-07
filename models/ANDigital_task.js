@@ -6,6 +6,7 @@ const Solution = function() {
     Solution.prototype.execute = function(input) {
 
         const ordered_digits = this.cleanUpInput(input);
+
         let output;
         if (ordered_digits.length == 2) {
             output =  this.dealWith2Digits(ordered_digits);
@@ -13,6 +14,7 @@ const Solution = function() {
         else {
             output =  this.dealWithDigits(ordered_digits);
         };
+
         return this.removeDuplicates(output);
     };
 
@@ -37,13 +39,7 @@ const Solution = function() {
     };
 
     Solution.prototype.cleanUpInput = function(input) {
-        const digit_array = [];
-        for (char of input) {
-            int = parseInt(char);
-            if (!isNaN(int)) {
-                digit_array.push(String(int));
-            };
-        };
+        const digit_array = input.split('').filter(char => !isNaN(parseInt(char)));
         digit_array.sort().reverse();
         return digit_array;
     };
