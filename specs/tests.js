@@ -20,8 +20,6 @@ describe('Solution', function() {
         assert.deepStrictEqual(actual, expected);;
     });
 
-
-
     it("should output '632, 623, 362, 326, 263, 236' for '326'", function() {
         const actual = solution.execute('326');
         const expected = ['632', '623', '362', '326', '263', '236'];
@@ -57,5 +55,10 @@ describe('Solution', function() {
         assert.deepStrictEqual(actual, expected);
     });
 
+    it("should deal with single digits", function() {
+        const actual = solution.execute('4');
+        const expected = [];
+        assert.deepStrictEqual(actual, expected);
+    });
 
 });
