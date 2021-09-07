@@ -56,12 +56,10 @@ const Solution = function() {
     };
 
     Solution.prototype.pushSolutions = function(suffixSolutions, digit) {
-        const solutions = [];
-        for (result of suffixSolutions) {
-            const solution = digit.concat(result);
-            solutions.push(solution);
-        };
-        return solutions;
+        const completeSolutions = suffixSolutions.map((suffixSolution) => {
+            return digit.concat(suffixSolution);
+        });
+        return completeSolutions;
     };
 
     Solution.prototype.removeDuplicates = function(array) {
