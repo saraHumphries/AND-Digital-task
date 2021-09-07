@@ -6,12 +6,14 @@ const Solution = function() {
     Solution.prototype.execute = function(input) {
 
         const ordered_digits = this.cleanUpInput(input);
+        let output;
         if (ordered_digits.length == 2) {
-            return this.dealWith2Digits(ordered_digits);
+            output =  this.dealWith2Digits(ordered_digits);
         }
         else {
-            return this.dealWithDigits(ordered_digits);
+            output =  this.dealWithDigits(ordered_digits);
         };
+        return this.removeDuplicates(output);
     };
 
     Solution.prototype.dealWith2Digits = function(array) {
@@ -60,6 +62,10 @@ const Solution = function() {
             solutions.push(solution);
         };
         return solutions;
+    };
+
+    Solution.prototype.removeDuplicates = function(array) {
+        return uniques = [...new Set(array)];
     };
 };
 
