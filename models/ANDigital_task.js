@@ -1,18 +1,17 @@
 
 
 const Solution = function() {
-    
 
     Solution.prototype.execute = function(input) {
 
-        const ordered_digits = this.cleanUpInput(input);
+        const cleanedInput = this.cleanUpInput(input);
 
         let output;
-        if (ordered_digits.length == 2) {
-            output =  this.dealWith2Digits(ordered_digits);
+        if (cleanedInput.length == 2) {
+            output =  this.dealWith2Digits(cleanedInput);
         }
         else {
-            output =  this.dealWithDigits(ordered_digits);
+            output =  this.dealWithDigits(cleanedInput);
         };
 
         return this.removeDuplicates(output);
@@ -44,16 +43,16 @@ const Solution = function() {
         return digit_array;
     };
 
-    Solution.prototype.removeDigitFromArray = function(array, digit) {
-        const indexOfDigit = array.indexOf(digit);
+    Solution.prototype.removeDigitFromArray = function(array, digitToRemove) {
+        const indexOfDigit = array.indexOf(digitToRemove);
         const other_digits = [...array];
         other_digits.splice(indexOfDigit, 1);
         return other_digits;
     };
 
-    Solution.prototype.pushSolutions = function(suffixSolutions, digit) {
+    Solution.prototype.pushSolutions = function(suffixSolutions, prefixDigit) {
         const completeSolutions = suffixSolutions.map((suffixSolution) => {
-            return digit.concat(suffixSolution);
+            return prefixDigit.concat(suffixSolution);
         });
         return completeSolutions;
     };
