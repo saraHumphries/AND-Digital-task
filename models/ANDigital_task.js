@@ -1,10 +1,6 @@
+function solution (input) {
 
-
-const Solution = function() {
-
-    Solution.prototype.execute = function(input) {
-
-        const cleanedInput = this.cleanUpInput(input);
+    const cleanedInput = cleanUpInput(input);
 
         if (cleanedInput.length == 0) {
             throw 'The input needs to include at least one digit'
@@ -12,60 +8,63 @@ const Solution = function() {
 
         let output;
         if (cleanedInput.length == 2) {
-            output =  this.dealWith2Digits(cleanedInput);
+            output =  dealWith2Digits(cleanedInput);
         }
         else {
-            output =  this.dealWithDigits(cleanedInput);
+            output =  dealWithDigits(cleanedInput);
         };
 
-        return this.removeDuplicates(output);
+        return removeDuplicates(output);
+    
     };
 
-    Solution.prototype.dealWith2Digits = function(array) {
+
+
+    const dealWith2Digits = function(array) {
         return [array[0] + array[1], array[1] + array[0]];
     };
 
-    Solution.prototype.dealWithDigits = function(array) {
+    const dealWithDigits = function(array) {
         let solutions = [];
         let previousSolutions;
         for (const digit of array) {
-            const other_digits = this.removeDigitFromArray(array, digit);
+            const other_digits = removeDigitFromArray(array, digit);
             if (other_digits.length == 2) {
-                previousSolutions = this.dealWith2Digits(other_digits);
+                previousSolutions = dealWith2Digits(other_digits);
             }
             else {
-                previousSolutions = this.dealWithDigits(other_digits);
+                previousSolutions = dealWithDigits(other_digits);
             };
-            solutions = solutions.concat(this.joinSolutions(previousSolutions, digit));
+            solutions = solutions.concat(joinSolutions(previousSolutions, digit));
         };
         return solutions;
     };
 
-    Solution.prototype.cleanUpInput = function(input) {
+    const cleanUpInput = function(input) {
         const digit_array = input.split('').filter(char => !isNaN(parseInt(char)));
         digit_array.sort().reverse();
         return digit_array;
     };
 
-    Solution.prototype.removeDigitFromArray = function(array, digitToRemove) {
+    const removeDigitFromArray = function(array, digitToRemove) {
         const indexOfDigit = array.indexOf(digitToRemove);
         const other_digits = [...array];
         other_digits.splice(indexOfDigit, 1);
         return other_digits;
     };
 
-    Solution.prototype.joinSolutions = function(suffixSolutions, prefixDigit) {
+    const joinSolutions = function(suffixSolutions, prefixDigit) {
         const completeSolutions = suffixSolutions.map((suffixSolution) => {
             return prefixDigit.concat(suffixSolution);
         });
         return completeSolutions;
     };
 
-    Solution.prototype.removeDuplicates = function(array) {
+    const removeDuplicates = function(array) {
         return uniques = [...new Set(array)];
     };
-};
 
 
 
-module.exports = Solution;
+
+module.exports = solution;
