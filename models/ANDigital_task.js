@@ -6,6 +6,10 @@ const Solution = function() {
 
         const cleanedInput = this.cleanUpInput(input);
 
+        if (cleanedInput.length == 0) {
+            throw 'The input needs to include at least one digit'
+        };
+
         let output;
         if (cleanedInput.length == 2) {
             output =  this.dealWith2Digits(cleanedInput);
@@ -23,16 +27,16 @@ const Solution = function() {
 
     Solution.prototype.dealWithDigits = function(array) {
         let solutions = [];
-        let previousSolution;
+        let previousSolutions;
         for (const digit of array) {
             const other_digits = this.removeDigitFromArray(array, digit);
             if (other_digits.length == 2) {
-                previousSolution = this.dealWith2Digits(other_digits);
+                previousSolutions = this.dealWith2Digits(other_digits);
             }
             else {
-                previousSolution = this.dealWithDigits(other_digits);
+                previousSolutions = this.dealWithDigits(other_digits);
             };
-            solutions = solutions.concat(this.pushSolutions(previousSolution, digit));
+            solutions = solutions.concat(this.joinSolutions(previousSolutions, digit));
         };
         return solutions;
     };
@@ -50,7 +54,7 @@ const Solution = function() {
         return other_digits;
     };
 
-    Solution.prototype.pushSolutions = function(suffixSolutions, prefixDigit) {
+    Solution.prototype.joinSolutions = function(suffixSolutions, prefixDigit) {
         const completeSolutions = suffixSolutions.map((suffixSolution) => {
             return prefixDigit.concat(suffixSolution);
         });

@@ -49,12 +49,6 @@ describe('Solution', function() {
         assert.deepStrictEqual(actual, expected);
     });
 
-    it("should deal with blank string", function() {
-        const actual = solution.execute('');
-        const expected = [];
-        assert.deepStrictEqual(actual, expected);
-    });
-
     it("should deal with single digits", function() {
         const actual = solution.execute('4');
         const expected = [];
